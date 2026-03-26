@@ -152,6 +152,37 @@ public class PracticeSet1 {
         return map;
     }
 
+    //    Remove duplicates from Sorted Array
+    public static int removeDuplicates(int[] arr) {
+        if (arr.length == 0) return 0;
+
+        int i = 0;
+
+        for (int j = 1; j < arr.length; j++) {
+            if (arr[i] != arr[j]) {
+                i++;
+                arr[i] = arr[j];
+            }
+        }
+
+        return i + 1; // new length
+    }
+
+    //    Find duplicates in O(n) time and O(n) extra space
+    public static ArrayList<Integer> findDuplicates(int[] arr) {
+        Map<Integer, Integer> map = new HashMap<>();
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i : arr) {
+            map.put(i, map.getOrDefault(i, 0) + 1);
+        }
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            if (entry.getValue() > 1) {
+                list.add(entry.getKey());
+            }
+        }
+        return list;
+    }
+
     public static void main(String[] args) {
 //        System.out.print("Enter the size of Array: ");
 //        int n = sc.nextInt();
@@ -190,5 +221,21 @@ public class PracticeSet1 {
 
         int[] arr4 = {10, 20, 10, 5, 20};
         System.out.println(countFreq(arr4));
+
+        int[] arr5 = {1, 2, 2, 3, 4, 4, 4, 5, 5};
+        int newLength = removeDuplicates(arr5);
+
+        for (int i = 0; i < newLength; i++) {
+            System.out.print(arr5[i] + " ");
+        }
+
+        System.out.println();
+
+        int[] arr6 = {1, 6, 5, 2, 3, 3, 2};
+        List<Integer> duplicates = findDuplicates(arr6);
+
+        for (int element : duplicates) {
+            System.out.print(element + " ");
+        }
     }
 }
