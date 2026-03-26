@@ -43,6 +43,11 @@ public class PracticeSet1 {
         rotate(arr, d, arr.length - 1);
     }
 
+    //  Array Reverse
+    public static void reverseArray(int[] arr) {
+        rotate(arr, 0, arr.length - 1);
+    }
+
     //    Equilibrium Index
     public static int equilibriumIndex(int[] arr) {
         int leftSum = 0, rightSum = 0;
@@ -91,6 +96,45 @@ public class PracticeSet1 {
         return true;
     }
 
+    //    Mean and Median of an Array
+    public static int mean(int[] arr) {
+        int sum = 0;
+        for (int i : arr) {
+            sum += i;
+        }
+        return sum / arr.length;
+    }
+
+    public static int median(int[] arr) {
+        int n = arr.length;
+        Arrays.sort(arr);
+        int res = 0;
+        if (n % 2 == 0) {
+            res = (arr[n / 2] + arr[(n / 2) - 1]) / 2;
+        } else {
+            res = arr[n / 2];
+        }
+        return res;
+    }
+
+    //    Find the smallest and second smallest elements in an array
+    public static ArrayList<Integer> smallestAndSecondSmallest(int[] nums) {
+        ArrayList<Integer> list = new ArrayList<>();
+        int small = Integer.MAX_VALUE;
+        int secSmall = Integer.MAX_VALUE;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] < small) {
+                secSmall = small;
+                small = nums[i];
+            } else if (nums[i] > small && nums[i] < secSmall) {
+                secSmall = nums[i];
+            }
+        }
+        list.add(small);
+        list.add(secSmall);
+        return list;
+    }
+
     public static void main(String[] args) {
 //        System.out.print("Enter the size of Array: ");
 //        int n = sc.nextInt();
@@ -110,5 +154,21 @@ public class PracticeSet1 {
         System.out.println(Arrays.toString(arr1));
         System.out.println(isSubset(arr1, arr));
         System.out.println(isSubsetOptimal(arr, arr1));
+        reverseArray(arr1);
+        System.out.println(Arrays.toString(arr1));
+        int[] arr2 = {2, 3, 4, 8};
+
+        int meanValue = mean(arr2);
+        int medianValue = median(arr2);
+
+        System.out.println(meanValue + " " + medianValue);
+
+        int[] arr3 = {12, 25, 8, 55, 10, 33, 17, 11};
+        ArrayList<Integer> result = smallestAndSecondSmallest(arr3);
+
+        for (int num : result) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
     }
 }
