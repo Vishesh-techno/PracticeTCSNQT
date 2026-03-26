@@ -20,6 +20,24 @@ public class PracticeSet1 {
         return -1;
     }
 
+    //    Rotate an Array by d - Counterclockwise or Left
+    public static void rotateArray(int[] arr, int d) {
+        d = d % arr.length;
+        rotate(arr, 0, d - 1);
+        rotate(arr, d, arr.length - 1);
+        rotate(arr, 0, arr.length - 1);
+    }
+
+    public static void rotate(int[] arr, int start, int end) {
+        while (start < end) {
+            int temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+            start++;
+            end--;
+        }
+    }
+
     public static void main(String[] args) {
         System.out.print("Enter the size of Array: ");
         int n = sc.nextInt();
@@ -30,5 +48,7 @@ public class PracticeSet1 {
         }
         System.out.println("The Array is: " + Arrays.toString(arr));
         System.out.println("The first Non-Repeating Character in the Array is: " + firstNonRepeating(arr));
+        rotateArray(arr, 2);
+        System.out.print("The Rotated Array is: " + Arrays.toString(arr));
     }
 }
