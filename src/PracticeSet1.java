@@ -135,6 +135,23 @@ public class PracticeSet1 {
         return list;
     }
 
+    //    Counting frequencies of array elements
+    public static Map<Integer, Integer> countFreq(int[] arr) {
+//        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i : arr) {
+            map.put(i, map.getOrDefault(i, 0) + 1);
+        }
+//        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+//            ArrayList<Integer> list = new ArrayList<>();
+//            list.add(entry.getKey());     // element
+//            list.add(entry.getValue());   // frequency
+//            res.add(list);
+//        }
+//        return res;
+        return map;
+    }
+
     public static void main(String[] args) {
 //        System.out.print("Enter the size of Array: ");
 //        int n = sc.nextInt();
@@ -170,5 +187,8 @@ public class PracticeSet1 {
             System.out.print(num + " ");
         }
         System.out.println();
+
+        int[] arr4 = {10, 20, 10, 5, 20};
+        System.out.println(countFreq(arr4));
     }
 }
