@@ -1,4 +1,6 @@
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class CodingQuestion {
     public static long fact(long n) {
@@ -83,6 +85,68 @@ public class CodingQuestion {
         }
     }
 
+    public static boolean isPerfectSquare(int n) {
+        int low = 1, high = n;
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            long sq = (long) mid * mid;
+            if (sq == n) {
+                return true;
+            } else if (sq < n) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return false;
+    }
+
+    public static int sumOfDigits(int n) {
+        while (n >= 10) {
+            int sum = 0;
+            while (n != 0) {
+                int rem = n % 10;
+                sum += rem;
+                n = n / 10;
+            }
+            n = sum;
+        }
+        return n;
+    }
+
+    public static void printDigits(int n) {
+        if (n == 0) {
+            return;
+        }
+        printDigits(n / 10);
+        System.out.println(n % 10 + " ");
+    }
+
+    public static void printPattern(int n) {
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (i == 1 || i == n || j == 1 || j == n) {
+                    System.out.print("1 ");
+                } else {
+                    System.out.print("0 ");
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    public static boolean twoSum(int[] arr, int target) {
+        Set<Integer> set = new HashSet<>();
+        for (int num : arr) {
+            int requiredNo = target - num;
+            if (set.contains(requiredNo)) {
+                return true;
+            }
+            set.add(num);
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         long n = sc.nextInt();
@@ -104,5 +168,12 @@ public class CodingQuestion {
         System.out.println(max(5, 15, 6));
         System.out.println(min(5, 4, 3, 15));
         System.out.println(getDays(2, 2024));
+        System.out.println(isPerfectSquare(2));
+        System.out.println(sumOfDigits(245));
+        printDigits(245);
+        printPattern(5);
+        int[] arr = {2, 7, 11, 15};
+        int target = 9;
+        System.out.println(twoSum(arr, target));
     }
 }
